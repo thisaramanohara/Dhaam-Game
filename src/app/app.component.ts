@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,14 +8,63 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  clickedIds :any[]= [];
+
+  checkColor(event:any) {
+    const i = event.target.id;
+    const col=document.getElementById(i);
+    const www:any=col?.getAttribute("style");
+
+    console.log(www);
+    const n = www.includes("background-color: blueviolet");
+    console.log(n);
+    //const col=i.style.backgroundColor;
+    //console.log(col);
+  }
+
+  goToWhite(clickedId:string,nextId:string){
+    const col=document.getElementById(nextId);
+    const www:any=col?.getAttribute("style");
+    const n = www.includes("background-color:white");
+    console.log('n in goto white',n);
+    if(n){
+      const pre=document.getElementById(clickedId);
+      pre?.setAttribute("style","background-color:#d3d34f;");
+      const pos=document.getElementById(nextId);
+      pos?.setAttribute("style","background-color:blue;");
+      //this.clickedIds.shift();
+      console.log('before splice');
+      this.clickedIds.splice(0,2);
+    }
+  }
+
+
+
+
   clicked(event:any) {
     //console.log(event.target.id)
     //event.target.id.setAttribute.("style", "backgroundColor:red;");
     //return true;
-    console.log(event.target.id);
+    //console.log(event.target.id);
     const id=event.target.id;
     const a = document.getElementById(id);
-    a?.setAttribute("style","background-color:red;");
+    //console.log('type = '+typeof(id));
+    this.clickedIds.push(id);
+
+    const www:any=a?.getAttribute("style");
+    console.log(www);
+    console.log(this.clickedIds);
+    const n = www.includes("background-color:white");
+    console.log(n);
+
+    if(n){
+      this.goToWhite(this.clickedIds[0],this.clickedIds[1]);
+      console.log(this.clickedIds);
+      return
+    }
+
+    //console.log(this.clickedIds);
+    //a?.setAttribute("style","background-color:red;");
 
     //when left edges are clicked
     if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){

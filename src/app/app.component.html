@@ -15,8 +15,10 @@
   <br>
   <div class="btn" (click)="clicked($event)" id={{i}} *ngFor="let i of [70,71,72,73,74,75,76,77,78,79]"></div>
   <br>
-  <div class="bottom-btn" (click)="clicked($event)" id={{i}} *ngFor="let i of [80,81,82,83,84,85,86,87,88,89]"></div>
+  <div class="bottom-btn" style="background-color: blue;" (click)="clicked($event)" id={{i}} *ngFor="let i of [80,81,82,83,84,85,86,87,88,89]"></div>
   <br>
-  <div class="bottom-btn" (click)="clicked($event)" id={{i}} *ngFor="let i of [90,91,92,93,94,95,96,97,98,99]"></div>
+  <div class="bottom-btn" style="background-color: blue;" (click)="clicked($event)" id={{i}} *ngFor="let i of [90,91,92,93,94,95,96,97,98,99]"></div>
   <br>
+
+  <div (click)="checkColor($event)" id="cc" style="background-color: blueviolet;height: 50px;width: 50px;"></div>
 </div>
