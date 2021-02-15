@@ -13,6 +13,10 @@ export class AppComponent {
 
   eating = false;
 
+  eatingFromLeft = false;
+  eatingFromRight = false;
+  eatingFromMiddle = false;
+
   clickedIds :any[]= [];
   currentElements :any[]=[];
 
@@ -48,8 +52,18 @@ export class AppComponent {
         const n1 = www1.includes("background-color: #d3d34f");
 
         return (n && n1);
+      }
+      //eating from rightside
+      else if(id==='9' || id==='19' || id==='29' || id==='39' ||id==='49' ||id==='59' ||id==='69' ||id==='79' ||id==='89' ||id==='99'){
+        const col=document.getElementById((parseInt(id)-11).toString());
+        const www:any=col?.getAttribute("style");
+        const n = www.includes("background-color: red");
 
+        const col1=document.getElementById((parseInt(id)-22).toString());
+        const www1:any=col1?.getAttribute("style");
+        const n1 = www1.includes("background-color: #d3d34f");
 
+        return (n && n1);
       }
 
 
@@ -76,8 +90,13 @@ export class AppComponent {
 
 
         //if eating from leftside
-        if(this.eating){
+        if(this.eating && this.eatingFromLeft){
           let fff=document.getElementById((parseInt(clickedId)-9).toString());
+          //let qqq:any=fff?.getAttribute("style");
+          fff?.setAttribute("style","background-color: #d3d34f;");
+        }
+        else if(this.eating && this.eatingFromRight){
+          let fff=document.getElementById((parseInt(clickedId)-11).toString());
           //let qqq:any=fff?.getAttribute("style");
           fff?.setAttribute("style","background-color: #d3d34f;");
         }
@@ -130,12 +149,6 @@ export class AppComponent {
     console.log('nextPlayer' ,this.nextPlayer)
     console.log('cuurentPlayer ',this.currentPlayer)
 
-    //console.log(this.currentElements);
-    //console.log('hello')
-    //console.log(event.target.id)
-    //event.target.id.setAttribute.("style", "backgroundColor:red;");
-    //return true;
-    //console.log(event.target.id);
     const id=event.target.id;
     const a = document.getElementById(id);
     //console.log('type = '+typeof(id));
@@ -251,6 +264,9 @@ export class AppComponent {
       if(this.eatRed(id)){
         v = parseInt(id)-18;
         this.eating=true;
+        this.eatingFromRight=false;
+        this.eatingFromLeft=true;
+        this.eatingFromMiddle=false;
       }else{
         v = parseInt(id)-10+1;
       }
@@ -271,7 +287,19 @@ export class AppComponent {
 //when right edges are clicked
     else if(id==='9' || id==='19' || id==='29' || id==='39' ||id==='49' ||id==='59' ||id==='69' ||id==='79' ||id==='89' ||id==='99'){
       a?.setAttribute("style","background-color: black;");
-      let v = parseInt(id)-11;
+
+      let v;
+      if(this.eatRed(id)){
+        v = parseInt(id)-22;
+        this.eating=true;
+        this.eatingFromRight=true;
+        this.eatingFromLeft=false;
+        this.eatingFromMiddle=false;
+      }else{
+        v = parseInt(id)-11;
+      }
+
+
       //let nextId = toString(parseInt(id) - 10 + 1)
       const b = document.getElementById(v.toString())
 
