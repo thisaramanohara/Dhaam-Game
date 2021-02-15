@@ -11,6 +11,8 @@ export class AppComponent {
   currentPlayer='';
   nextPlayer='Red';
 
+  eating = false;
+
   clickedIds :any[]= [];
   currentElements :any[]=[];
 
@@ -32,6 +34,28 @@ export class AppComponent {
     //console.log(col);
   }
 
+  eatRed(id:string){
+    if(this.blueActive) {
+
+      //eating from leftside
+      if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){
+        const col=document.getElementById((parseInt(id)-9).toString());
+        const www:any=col?.getAttribute("style");
+        const n = www.includes("background-color: red");
+
+        const col1=document.getElementById((parseInt(id)-18).toString());
+        const www1:any=col1?.getAttribute("style");
+        const n1 = www1.includes("background-color: #d3d34f");
+
+        return (n && n1);
+
+
+      }
+
+
+    }
+  }
+
   goToWhite(clickedId:string,nextId:string){
     const col=document.getElementById(nextId);
     const www:any=col?.getAttribute("style");
@@ -45,7 +69,20 @@ export class AppComponent {
       //console.log(this.blueActive)
       //console.log(this.redActive)
       if(this.blueActive){
+
+
+
         pos?.setAttribute("style","background-color: blue;");
+
+
+        //if eating from leftside
+        if(this.eating){
+          let fff=document.getElementById((parseInt(clickedId)-9).toString());
+          //let qqq:any=fff?.getAttribute("style");
+          fff?.setAttribute("style","background-color: #d3d34f;");
+        }
+
+
         //this.currentPlayer='Blue'
         //this.nextPlayer='Red'
         this.blueActive=false;
@@ -209,7 +246,16 @@ export class AppComponent {
       //when left edges are clicked
     if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){
       a?.setAttribute("style","background-color: black;");
-      let v = parseInt(id)-10+1;
+
+      let v;
+      if(this.eatRed(id)){
+        v = parseInt(id)-18;
+        this.eating=true;
+      }else{
+        v = parseInt(id)-10+1;
+      }
+
+
       //let nextId = toString(parseInt(id) - 10 + 1)
       const b = document.getElementById(v.toString())
       //this.currentElements.push(v);
