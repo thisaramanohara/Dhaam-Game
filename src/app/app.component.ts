@@ -12,6 +12,7 @@ export class AppComponent {
   nextPlayer='Red';
 
   eating = false;
+  eatingBlues = false;
 
   eatingFromLeft = false;
   eatingFromRight = false;
@@ -65,20 +66,33 @@ export class AppComponent {
 
         return (n && n1);
       }
-      /*
-      //eating from middle
-      else if(id==='90' || id==='91' || id==='92' || id==='93' ||id==='94' ||id==='95' ||id==='96' ||id==='97' ||id==='98' ||id==='99'){
-        let left=false
-        let right=false
 
+    }else if(this.redActive){
 
+      //eating from leftside
+      if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){
+        const col=document.getElementById((parseInt(id)+11).toString());
+        const www:any=col?.getAttribute("style");
+        const n = www.includes("background-color: blue");
 
+        const col1=document.getElementById((parseInt(id)+22).toString());
+        const www1:any=col1?.getAttribute("style");
+        const n1 = www1.includes("background-color: #d3d34f");
 
-
-        return [left,right]
+        return (n && n1);
       }
-      */
+      //eating from rightside
+      else if(id==='9' || id==='19' || id==='29' || id==='39' ||id==='49' ||id==='59' ||id==='69' ||id==='79' ||id==='89' ||id==='99'){
+        const col=document.getElementById((parseInt(id)+9).toString());
+        const www:any=col?.getAttribute("style");
+        const n = www.includes("background-color: blue");
 
+        const col1=document.getElementById((parseInt(id)+18).toString());
+        const www1:any=col1?.getAttribute("style");
+        const n1 = www1.includes("background-color: #d3d34f");
+
+        return (n && n1);
+      }
 
     }
   }
@@ -96,6 +110,19 @@ export class AppComponent {
     return (n && n1);
   }
 
+  eatBlueStartedFromMiddle_forLeft(id:string){
+    //can eat for leftside
+    const col=document.getElementById((parseInt(id)+9).toString());
+    const www:any=col?.getAttribute("style");
+    const n = www.includes("background-color: blue");
+
+    const col1=document.getElementById((parseInt(id)+18).toString());
+    const www1:any=col1?.getAttribute("style");
+    const n1 = www1.includes("background-color: #d3d34f");
+
+    return (n && n1);
+  }
+
   eatRedStartedFromMiddle_forRight(id:string){
     //can eat for rightside
     const col2=document.getElementById((parseInt(id)-9).toString());
@@ -103,6 +130,19 @@ export class AppComponent {
     const n2 = www2.includes("background-color: red");
 
     const col12=document.getElementById((parseInt(id)-18).toString());
+    const www12:any=col12?.getAttribute("style");
+    const n12 = www12.includes("background-color: #d3d34f");
+
+    return (n2 && n12);
+  }
+
+  eatBlueStartedFromMiddle_forRight(id:string){
+    //can eat for rightside
+    const col2=document.getElementById((parseInt(id)+11).toString());
+    const www2:any=col2?.getAttribute("style");
+    const n2 = www2.includes("background-color: blue");
+
+    const col12=document.getElementById((parseInt(id)+22).toString());
     const www12:any=col12?.getAttribute("style");
     const n12 = www12.includes("background-color: #d3d34f");
 
@@ -171,6 +211,32 @@ export class AppComponent {
         this.xRed=false
         this.blueActive=true;
         this.redActive=false;
+
+
+
+
+        //if eating from leftside
+        if(this.eatingBlues && this.eatingFromLeft){
+          let fff=document.getElementById((parseInt(clickedId)+11).toString());
+          //let qqq:any=fff?.getAttribute("style");
+          fff?.setAttribute("style","background-color: #d3d34f;");
+        }
+        else if(this.eatingBlues && this.eatingFromRight){
+          let fff=document.getElementById((parseInt(clickedId)+9).toString());
+          //let qqq:any=fff?.getAttribute("style");
+          fff?.setAttribute("style","background-color: #d3d34f;");
+        }
+        else if(this.eatingBlues && this.eatingFromMiddle){
+          if(parseInt(nextId)>parseInt(clickedId)+20){
+            let fff=document.getElementById((parseInt(clickedId)+11).toString());
+          //let qqq:any=fff?.getAttribute("style");
+            fff?.setAttribute("style","background-color: #d3d34f;");
+          }else{
+            let fff=document.getElementById((parseInt(clickedId)+9).toString());
+            //let qqq:any=fff?.getAttribute("style");
+            fff?.setAttribute("style","background-color: #d3d34f;");
+          }
+        }
       }
 
 
@@ -316,6 +382,7 @@ export class AppComponent {
       if(this.eatRed(id)){
         v = parseInt(id)-18;
         this.eating=true;
+        this.eatingBlues=false;
         this.eatingFromRight=false;
         this.eatingFromLeft=true;
         this.eatingFromMiddle=false;
@@ -344,6 +411,7 @@ export class AppComponent {
       if(this.eatRed(id)){
         v = parseInt(id)-22;
         this.eating=true;
+        this.eatingBlues=false;
         this.eatingFromRight=true;
         this.eatingFromLeft=false;
         this.eatingFromMiddle=false;
@@ -374,6 +442,7 @@ export class AppComponent {
       let w;
       if(left && !right){
         this.eating=true;
+        this.eatingBlues=false;
         this.eatingFromRight=false;
         this.eatingFromLeft=false;
         this.eatingFromMiddle=true;
@@ -381,6 +450,7 @@ export class AppComponent {
         w = parseInt(id)-9;
       }else if(right && !left){
         this.eating=true;
+        this.eatingBlues=false;
         this.eatingFromRight=false;
         this.eatingFromLeft=false;
         this.eatingFromMiddle=true;
@@ -388,6 +458,7 @@ export class AppComponent {
         w = parseInt(id)-18;
       }else if(left && right){
         this.eating=true;
+        this.eatingBlues=false;
         this.eatingFromRight=false;
         this.eatingFromLeft=false;
         this.eatingFromMiddle=true;
@@ -432,6 +503,7 @@ export class AppComponent {
       let w;
       if(left && !right){
         this.eating=true;
+        this.eatingBlues=false;
         this.eatingFromRight=false;
         this.eatingFromLeft=false;
         this.eatingFromMiddle=true;
@@ -439,6 +511,7 @@ export class AppComponent {
         w = parseInt(id)-9;
       }else if(right && !left){
         this.eating=true;
+        this.eatingBlues=false;
         this.eatingFromRight=false;
         this.eatingFromLeft=false;
         this.eatingFromMiddle=true;
@@ -446,6 +519,7 @@ export class AppComponent {
         w = parseInt(id)-18;
       }else if(left && right){
         this.eating=true;
+        this.eatingBlues=false;
         this.eatingFromRight=false;
         this.eatingFromLeft=false;
         this.eatingFromMiddle=true;
@@ -453,6 +527,7 @@ export class AppComponent {
         w = parseInt(id)-18;
       }else{
         this.eating=false;
+        this.eatingBlues=false;
         v = parseInt(id)-11;
         w = parseInt(id)-9;
       }
@@ -492,7 +567,22 @@ export class AppComponent {
       //when left edges are clicked
     if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){
       a?.setAttribute("style","background-color: black;");
-      let v = parseInt(id)+10+1;
+
+      let v;
+      if(this.eatRed(id)){
+        v = parseInt(id)+22;
+        this.eatingBlues=true;
+        this.eating=false;
+        this.eatingFromRight=false;
+        this.eatingFromLeft=true;
+        this.eatingFromMiddle=false;
+      }else{
+        v = parseInt(id)+10+1;
+      }
+
+
+
+      //let v = parseInt(id)+10+1;
       //let nextId = toString(parseInt(id) - 10 + 1)
       const b = document.getElementById(v.toString())
       //this.currentElements.push(v);
@@ -508,7 +598,22 @@ export class AppComponent {
 //when right edges are clicked
     else if(id==='9' || id==='19' || id==='29' || id==='39' ||id==='49' ||id==='59' ||id==='69' ||id==='79' ||id==='89' ||id==='99'){
       a?.setAttribute("style","background-color: black;");
-      let v = parseInt(id)+9;
+
+      let v;
+      if(this.eatRed(id)){
+        v = parseInt(id)+18;
+        this.eatingBlues=true;
+        this.eating=false;
+        this.eatingFromRight=true;
+        this.eatingFromLeft=false;
+        this.eatingFromMiddle=false;
+      }else{
+        v = parseInt(id)+9;
+      }
+
+
+
+      //let v = parseInt(id)+9;
       //let nextId = toString(parseInt(id) - 10 + 1)
       const b = document.getElementById(v.toString())
 
@@ -521,8 +626,53 @@ export class AppComponent {
     //when bott0m edges are clicked
     else if(id==='90' || id==='91' || id==='92' || id==='93' ||id==='94' ||id==='95' ||id==='96' ||id==='97' ||id==='98' ||id==='99'){
       a?.setAttribute("style","background-color: black;");
-      let v = parseInt(id)+11;
-      let w = parseInt(id)+9;
+
+      let left= this.eatBlueStartedFromMiddle_forLeft(id);
+      let right=this.eatBlueStartedFromMiddle_forRight(id);
+
+
+
+      let v;
+      let w;
+      if(left && !right){
+        this.eating=false;
+        this.eatingBlues=true;
+        this.eatingFromRight=false;
+        this.eatingFromLeft=false;
+        this.eatingFromMiddle=true;
+        v = parseInt(id)+11;
+        w = parseInt(id)+18;
+      }else if(right && !left){
+        this.eating=false;
+        this.eatingBlues=true;
+        this.eatingFromRight=false;
+        this.eatingFromLeft=false;
+        this.eatingFromMiddle=true;
+        v = parseInt(id)+22;
+        w = parseInt(id)+9;
+      }else if(left && right){
+        this.eating=false;
+        this.eatingBlues=true;
+        this.eating=true;
+        this.eatingFromRight=false;
+        this.eatingFromLeft=false;
+        this.eatingFromMiddle=true;
+        v = parseInt(id)+22;
+        w = parseInt(id)+18;
+      }else{
+        this.eating=false;
+        this.eatingBlues=false;
+        v = parseInt(id)+11;
+        w = parseInt(id)+9;
+      }
+
+
+
+
+
+
+      //let v = parseInt(id)+11;
+      //let w = parseInt(id)+9;
       //let nextId = toString(parseInt(id) - 10 + 1)
       this.currentElements.push(v);
       this.currentElements.push(w);
@@ -536,7 +686,7 @@ export class AppComponent {
       c?.setAttribute("style","background-color: white;");
     }
 
-
+    this.currentElements.length=0;
       //console.log(b)
     }
 
@@ -544,8 +694,48 @@ export class AppComponent {
     //if(id==='90' || id==='91' || id==='92' || id==='93' ||id==='94' ||id==='95' ||id==='96' ||id==='97' ||id==='98' ||id==='99'){
     else {
       a?.setAttribute("style","background-color: black;");
-      let v = parseInt(id)+11;
-      let w = parseInt(id)+9;
+
+      let left= this.eatBlueStartedFromMiddle_forLeft(id);
+      let right=this.eatBlueStartedFromMiddle_forRight(id);
+
+
+
+      let v;
+      let w;
+      if(left && !right){
+        this.eating=false;
+        this.eatingBlues=true;
+        this.eatingFromRight=false;
+        this.eatingFromLeft=false;
+        this.eatingFromMiddle=true;
+        v = parseInt(id)+11;
+        w = parseInt(id)+18;
+      }else if(right && !left){
+        this.eating=false;
+        this.eatingBlues=true;
+        this.eatingFromRight=false;
+        this.eatingFromLeft=false;
+        this.eatingFromMiddle=true;
+        v = parseInt(id)+22;
+        w = parseInt(id)+9;
+      }else if(left && right){
+        this.eating=false;
+        this.eatingBlues=true;
+        this.eating=true;
+        this.eatingFromRight=false;
+        this.eatingFromLeft=false;
+        this.eatingFromMiddle=true;
+        v = parseInt(id)+22;
+        w = parseInt(id)+18;
+      }else{
+        this.eating=false;
+        this.eatingBlues=false;
+        v = parseInt(id)+11;
+        w = parseInt(id)+9;
+      }
+
+      //let v = parseInt(id)+11;
+      //let w = parseInt(id)+9;
       //let nextId = toString(parseInt(id) - 10 + 1)
       const b = document.getElementById(v.toString())
       //console.log(typeof(b))
@@ -561,6 +751,7 @@ export class AppComponent {
         c?.setAttribute("style","background-color: white;");
       }
       //console.log(b)
+      this.currentElements.length=0;
     }
 
     //this.nextPlayer='Red'
