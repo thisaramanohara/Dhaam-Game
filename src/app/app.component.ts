@@ -8,11 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  currentPlayer='';
+  nextPlayer='Red';
+
   clickedIds :any[]= [];
   currentElements :any[]=[];
 
   redActive=false;
-  blueActive=false;
+  blueActive=true;
+
+  xBlue=true;
+  xRed=!this.xBlue;
 
   checkColor(event:any) {
     const i = event.target.id;
@@ -32,14 +38,31 @@ export class AppComponent {
     const n = www.includes("background-color: white");
     //console.log('n in goto white',n);
     if(n){
+
       const pre=document.getElementById(clickedId);
       pre?.setAttribute("style","background-color: #d3d34f;");
       const pos=document.getElementById(nextId);
-
+      //console.log(this.blueActive)
+      //console.log(this.redActive)
       if(this.blueActive){
         pos?.setAttribute("style","background-color: blue;");
-      }else if(this.redActive){
+        //this.currentPlayer='Blue'
+        //this.nextPlayer='Red'
+        this.blueActive=false;
+        this.redActive=true;
+        this.xBlue=false
+        this.xRed=true
+        //console.log(this.xRed)
+
+      //}else if(this.redActive){
+      }else{
         pos?.setAttribute("style","background-color: red;");
+        //this.currentPlayer='Red'
+        //this.nextPlayer='Blue'
+        this.xBlue=true
+        this.xRed=false
+        this.blueActive=true;
+        this.redActive=false;
       }
 
 
@@ -65,7 +88,10 @@ export class AppComponent {
 
   clicked(event:any) {
 
-
+    console.log('xBlue ',this.xBlue)
+    console.log('xRed ',this.xRed)
+    console.log('nextPlayer' ,this.nextPlayer)
+    console.log('cuurentPlayer ',this.currentPlayer)
 
     //console.log(this.currentElements);
     //console.log('hello')
@@ -85,12 +111,12 @@ export class AppComponent {
     const black = www.includes("background-color: black");
     const yellow = www.includes("background-color: #d3d34f");
 
-    const blue = www.includes("background-color: blue");
-    const red = www.includes("background-color: red");
+    //const blue = www.includes("background-color: blue");
+    //const red = www.includes("background-color: red");
 
+    const blue = this.xBlue;
+    const red = this.xRed;
 
-
-//*************************************** */
 
     if(black || yellow) {
       console.log('wrong place clicked')
@@ -104,8 +130,10 @@ export class AppComponent {
         //for blue
         if(cl.includes("background-color: black")){
           if(this.blueActive){
+          //if(this.xBlue){
             b?.setAttribute("style","background-color: blue;");
           }else if(this.redActive){
+          //}else if(this.xRed){
             b?.setAttribute("style","background-color: red;");
           }
 
@@ -116,6 +144,31 @@ export class AppComponent {
       this.clickedIds.length=0;
       return
     }
+
+
+
+    //when red is pressed in blues chance
+    if(this.blueActive){
+      if(www.includes("background-color: red")){
+        this.clickedIds.length=0;
+        return
+      }
+    }
+
+    //if blue is prssed in reds chnace
+    if(this.redActive){
+      if(www.includes("background-color: blue")){
+        this.clickedIds.length=0;
+        return
+      }
+    }
+
+
+
+
+//*************************************** */
+
+
 
 
     const n = www.includes("background-color: white");
@@ -143,10 +196,15 @@ export class AppComponent {
     //a?.setAttribute("style","background-color:red;");
 
 
-    if(blue){
+    if(this.blueActive){
 
-      this.blueActive=true;
-      this.redActive=false;
+      //this.xBlue=false;
+      //this.xRed=true;
+      //this.nextPlayer='Red';
+      //this.currentPlayer='Blue';
+
+      //this.blueActive=true;
+      //this.redActive=false;
 
       //when left edges are clicked
     if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){
@@ -223,14 +281,19 @@ export class AppComponent {
     }
 
 
-
+    //this.nextPlayer='Blue'
 
     }
 
-    if(red){
+    if(this.redActive){
 
-      this.redActive=true;
-      this.blueActive=false;
+      //this.xBlue=true
+      //this.xRed=false
+      //this.nextPlayer='Blue'
+      //this.currentPlayer='Red'
+
+      //this.redActive=true;
+      //this.blueActive=false;
 
       //when left edges are clicked
     if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){
@@ -305,6 +368,8 @@ export class AppComponent {
       }
       //console.log(b)
     }
+
+    //this.nextPlayer='Red'
 
     }
 
