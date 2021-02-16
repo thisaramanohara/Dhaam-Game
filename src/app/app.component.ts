@@ -182,14 +182,15 @@ export class AppComponent {
           fff?.setAttribute("style","background-color: #d3d34f;");
         }
         else if(this.eating && this.eatingFromMiddle){
-          if(parseInt(nextId)>parseInt(clickedId)-20){
-            let fff=document.getElementById((parseInt(clickedId)-9).toString());
+          //if(parseInt(nextId)>parseInt(clickedId)-20){
+          if(parseInt(nextId)<parseInt(clickedId)-20){
+            let fff=document.getElementById((parseInt(clickedId)-11).toString());
           //let qqq:any=fff?.getAttribute("style");
             fff?.setAttribute("style","background-color: #d3d34f;");
           }else{
-            let fff=document.getElementById((parseInt(clickedId)-11).toString());
-            //let qqq:any=fff?.getAttribute("style");
-            fff?.setAttribute("style","background-color: #d3d34f;");
+            //let fff=document.getElementById((parseInt(clickedId)-11).toString());
+
+            //fff?.setAttribute("style","background-color: #d3d34f;");
           }
         }
 
@@ -232,9 +233,9 @@ export class AppComponent {
           //let qqq:any=fff?.getAttribute("style");
             fff?.setAttribute("style","background-color: #d3d34f;");
           }else{
-            let fff=document.getElementById((parseInt(clickedId)+9).toString());
-            //let qqq:any=fff?.getAttribute("style");
-            fff?.setAttribute("style","background-color: #d3d34f;");
+            //let fff=document.getElementById((parseInt(clickedId)+9).toString());
+
+            //fff?.setAttribute("style","background-color: #d3d34f;");
           }
         }
       }
