@@ -68,9 +68,16 @@ export class AppComponent {
         const www:any=col?.getAttribute("style");
         const n = www.includes("background-color: red");
 
-        const col1=document.getElementById((parseInt(id)-18).toString());
-        const www1:any=col1?.getAttribute("style");
-        const n1 = www1.includes("background-color: #d3d34f");
+
+
+
+        let n1=false;
+        if(parseInt(id)!=10){
+          const col1=document.getElementById((parseInt(id)-18).toString());
+          const www1:any=col1?.getAttribute("style");
+          n1 = www1.includes("background-color: #d3d34f");
+        }
+
 
         return (n && n1);
       }
@@ -80,9 +87,16 @@ export class AppComponent {
         const www:any=col?.getAttribute("style");
         const n = www.includes("background-color: red");
 
-        const col1=document.getElementById((parseInt(id)-22).toString());
-        const www1:any=col1?.getAttribute("style");
-        const n1 = www1.includes("background-color: #d3d34f");
+
+        let n1=false;
+        if(parseInt(id)!=19){
+          const col1=document.getElementById((parseInt(id)-22).toString());
+          const www1:any=col1?.getAttribute("style");
+          n1 = www1.includes("background-color: #d3d34f");
+        }
+
+
+
 
         return (n && n1);
       }
@@ -123,9 +137,21 @@ export class AppComponent {
     const www:any=col?.getAttribute("style");
     const n = www.includes("background-color: red");
 
-    const col1=document.getElementById((parseInt(id)-22).toString());
-    const www1:any=col1?.getAttribute("style");
-    const n1 = www1.includes("background-color: #d3d34f");
+
+
+
+    //check whether if there is an eat
+    let n1=false;
+    if((parseInt(id)>21)){
+      const col1=document.getElementById((parseInt(id)-22).toString());
+      const www1:any=col1?.getAttribute("style");
+      n1 = www1.includes("background-color: #d3d34f");
+    }
+
+
+
+
+
 
     return (n && n1);
   }
@@ -135,6 +161,10 @@ export class AppComponent {
     const col=document.getElementById((parseInt(id)+9).toString());
     const www:any=col?.getAttribute("style");
     const n = www.includes("background-color: blue");
+
+    //if there is no chnace to eat for leftside
+
+
 
     const col1=document.getElementById((parseInt(id)+18).toString());
     const www1:any=col1?.getAttribute("style");
@@ -149,9 +179,20 @@ export class AppComponent {
     const www2:any=col2?.getAttribute("style");
     const n2 = www2.includes("background-color: red");
 
-    const col12=document.getElementById((parseInt(id)-18).toString());
-    const www12:any=col12?.getAttribute("style");
-    const n12 = www12.includes("background-color: #d3d34f");
+
+    //check whether if there is an eat
+    let n12=false;
+    if((parseInt(id)>19)  && (parseInt(id)!=28) && (parseInt(id)!=29) ){
+      const col12=document.getElementById((parseInt(id)-18).toString());
+      const www12:any=col12?.getAttribute("style");
+      n12 = www12.includes("background-color: #d3d34f");
+    }
+
+
+
+
+
+
 
     return (n2 && n12);
   }
@@ -323,10 +364,18 @@ export class AppComponent {
 
   clicked(event:any) {
 
-    console.log('xBlue ',this.xBlue)
-    console.log('xRed ',this.xRed)
-    console.log('nextPlayer' ,this.nextPlayer)
-    console.log('cuurentPlayer ',this.currentPlayer)
+
+
+
+
+    //console.log('xBlue ',this.xBlue)
+    //console.log('xRed ',this.xRed)
+    //console.log('nextPlayer' ,this.nextPlayer)
+    //console.log('cuurentPlayer ',this.currentPlayer)
+
+
+
+
 
     const id=event.target.id;
     const a = document.getElementById(id);
@@ -441,6 +490,10 @@ export class AppComponent {
       a?.setAttribute("style","background-color: black;");
 
       let v;
+
+
+
+
       if(this.eatRed(id)){
         v = parseInt(id)-18;
         this.eating=true;
@@ -502,6 +555,19 @@ export class AppComponent {
 
       let v;
       let w;
+
+
+
+
+
+
+
+
+
+
+
+
+
       if(left && !right){
         this.eating=true;
         this.eatingBlues=false;
@@ -530,6 +596,16 @@ export class AppComponent {
         v = parseInt(id)-11;
         w = parseInt(id)-9;
       }
+
+
+
+
+
+
+
+
+
+
 
 
       //let nextId = toString(parseInt(id) - 10 + 1)
@@ -563,6 +639,19 @@ export class AppComponent {
 
       let v;
       let w;
+
+
+
+      //after coming to the 3rd row and if the ids are 20,21,
+      if(id==='20' || id==='21' || id==='22' || id==='23' ||id==='24' ||id==='25' ||id==='26' ||id==='27' ||id==='28' ||id==='29'){
+
+      }
+
+
+
+
+
+
       if(left && !right){
         this.eating=true;
         this.eatingBlues=false;
@@ -593,6 +682,12 @@ export class AppComponent {
         v = parseInt(id)-11;
         w = parseInt(id)-9;
       }
+
+
+
+
+
+
       //let nextId = toString(parseInt(id) - 10 + 1)
       const b = document.getElementById(v.toString())
       //console.log(typeof(b))
