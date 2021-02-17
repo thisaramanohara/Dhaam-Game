@@ -27,6 +27,26 @@ export class AppComponent {
   xBlue=true;
   xRed=!this.xBlue;
 
+
+/*
+  arrivedLastLine(id:string){
+    const cell = document.getElementById(id);
+    const clr:any=cell?.getAttribute("style");
+
+    //if a blue arrives before lastline
+    if(clr.includes("background-color: blue")){
+      if(10<=parseInt(id) && parseInt(id)<=19){
+        //*******************************************
+      }
+    }
+  }
+
+  setWhiteWhenAtBeforeLast(clickedId:string,nextId:string){
+
+  }
+
+  */
+
   checkColor(event:any) {
     const i = event.target.id;
     const col=document.getElementById(i);
@@ -182,16 +202,37 @@ export class AppComponent {
           fff?.setAttribute("style","background-color: #d3d34f;");
         }
         else if(this.eating && this.eatingFromMiddle){
+
+
+
+
+
+
+
           //if(parseInt(nextId)>parseInt(clickedId)-20){
           if(parseInt(nextId)<parseInt(clickedId)-20){
             let fff=document.getElementById((parseInt(clickedId)-11).toString());
           //let qqq:any=fff?.getAttribute("style");
             fff?.setAttribute("style","background-color: #d3d34f;");
-          }else{
+          }else if(parseInt(nextId)==parseInt(clickedId)-20+2){
             let fff=document.getElementById((parseInt(clickedId)-9).toString());
 
             fff?.setAttribute("style","background-color: #d3d34f;");
           }
+          else{
+            //let fff=document.getElementById((parseInt(clickedId)-9).toString());
+
+            //fff?.setAttribute("style","background-color: #d3d34f;");
+          }
+
+
+
+
+
+
+
+
+
         }
 
 
@@ -228,16 +269,35 @@ export class AppComponent {
           fff?.setAttribute("style","background-color: #d3d34f;");
         }
         else if(this.eatingBlues && this.eatingFromMiddle){
-          if(parseInt(nextId)>parseInt(clickedId)+20){
+
+
+
+
+
+
+
+
+          if(parseInt(nextId)==parseInt(clickedId)+20+2){
             let fff=document.getElementById((parseInt(clickedId)+11).toString());
           //let qqq:any=fff?.getAttribute("style");
             fff?.setAttribute("style","background-color: #d3d34f;");
-          }else{
+          }
+          else if(parseInt(nextId)==parseInt(clickedId)+20-2){
             let fff=document.getElementById((parseInt(clickedId)+9).toString());
-
+            //let qqq:any=fff?.getAttribute("style");
             fff?.setAttribute("style","background-color: #d3d34f;");
           }
+          else{
+            //let fff=document.getElementById((parseInt(clickedId)+9).toString());
+
+            //fff?.setAttribute("style","background-color: #d3d34f;");
+          }
         }
+
+
+
+
+
       }
 
 
@@ -377,6 +437,7 @@ export class AppComponent {
 
       //when left edges are clicked
     if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){
+    //if(id==='0' || id==='10' || id==='20' || id==='30' ||id==='40' ||id==='50' ||id==='60' ||id==='70' ||id==='80' ||id==='90'){
       a?.setAttribute("style","background-color: black;");
 
       let v;
