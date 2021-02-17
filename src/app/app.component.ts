@@ -109,9 +109,15 @@ export class AppComponent {
         const www:any=col?.getAttribute("style");
         const n = www.includes("background-color: blue");
 
-        const col1=document.getElementById((parseInt(id)+22).toString());
-        const www1:any=col1?.getAttribute("style");
-        const n1 = www1.includes("background-color: #d3d34f");
+
+        let n1=false;
+        if(parseInt(id)!=80){
+          const col1=document.getElementById((parseInt(id)+22).toString());
+          const www1:any=col1?.getAttribute("style");
+          n1 = www1.includes("background-color: #d3d34f");
+        }
+
+
 
         return (n && n1);
       }
@@ -121,9 +127,15 @@ export class AppComponent {
         const www:any=col?.getAttribute("style");
         const n = www.includes("background-color: blue");
 
-        const col1=document.getElementById((parseInt(id)+18).toString());
+
+        let n1=false;
+        if(parseInt(id)!=89){
+          const col1=document.getElementById((parseInt(id)+18).toString());
         const www1:any=col1?.getAttribute("style");
-        const n1 = www1.includes("background-color: #d3d34f");
+        n1 = www1.includes("background-color: #d3d34f");
+        }
+
+
 
         return (n && n1);
       }
@@ -150,9 +162,6 @@ export class AppComponent {
 
 
 
-
-
-
     return (n && n1);
   }
 
@@ -162,13 +171,17 @@ export class AppComponent {
     const www:any=col?.getAttribute("style");
     const n = www.includes("background-color: blue");
 
-    //if there is no chnace to eat for leftside
-
-
-
-    const col1=document.getElementById((parseInt(id)+18).toString());
+    //check whether if there is an eat
+    let n1=false;
+    if((parseInt(id)!=70) && (parseInt(id)!=71) && (parseInt(id))<80 ){
+      const col1=document.getElementById((parseInt(id)+18).toString());
     const www1:any=col1?.getAttribute("style");
-    const n1 = www1.includes("background-color: #d3d34f");
+    n1 = www1.includes("background-color: #d3d34f");
+    }
+
+
+
+
 
     return (n && n1);
   }
@@ -178,6 +191,7 @@ export class AppComponent {
     const col2=document.getElementById((parseInt(id)-9).toString());
     const www2:any=col2?.getAttribute("style");
     const n2 = www2.includes("background-color: red");
+
 
 
     //check whether if there is an eat
@@ -203,9 +217,19 @@ export class AppComponent {
     const www2:any=col2?.getAttribute("style");
     const n2 = www2.includes("background-color: blue");
 
-    const col12=document.getElementById((parseInt(id)+22).toString());
+    //check whether if there is an eat
+    let n12=false;
+    if((parseInt(id))<78 ){
+      const col12=document.getElementById((parseInt(id)+22).toString());
     const www12:any=col12?.getAttribute("style");
-    const n12 = www12.includes("background-color: #d3d34f");
+    n12 = www12.includes("background-color: #d3d34f");
+    }
+
+
+
+
+
+
 
     return (n2 && n12);
   }
