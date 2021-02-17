@@ -149,12 +149,15 @@ export class AppComponent {
     const www:any=col?.getAttribute("style");
     const n = www.includes("background-color: red");
 
+    //check left side vertical rows
+    let verticalOk = false;
+    verticalOk=parseInt(id)!=1 && parseInt(id)!=11 && parseInt(id)!=21 && parseInt(id)!=31 && parseInt(id)!=41 && parseInt(id)!=51 && parseInt(id)!=61 && parseInt(id)!=71 && parseInt(id)!=81 && parseInt(id)!=91;
 
 
 
     //check whether if there is an eat
     let n1=false;
-    if((parseInt(id)>21)){
+    if((parseInt(id)>21) && verticalOk){
       const col1=document.getElementById((parseInt(id)-22).toString());
       const www1:any=col1?.getAttribute("style");
       n1 = www1.includes("background-color: #d3d34f");
@@ -171,9 +174,13 @@ export class AppComponent {
     const www:any=col?.getAttribute("style");
     const n = www.includes("background-color: blue");
 
+    //check left side vertical rows
+    let verticalOk = false;
+    verticalOk=parseInt(id)!=1 && parseInt(id)!=11 && parseInt(id)!=21 && parseInt(id)!=31 && parseInt(id)!=41 && parseInt(id)!=51 && parseInt(id)!=61 && parseInt(id)!=71 && parseInt(id)!=81 && parseInt(id)!=91;
+
     //check whether if there is an eat
     let n1=false;
-    if((parseInt(id)!=70) && (parseInt(id)!=71) && (parseInt(id))<80 ){
+    if((parseInt(id)!=70) && (parseInt(id)!=71) && (parseInt(id))<80 && verticalOk){
       const col1=document.getElementById((parseInt(id)+18).toString());
     const www1:any=col1?.getAttribute("style");
     n1 = www1.includes("background-color: #d3d34f");
@@ -192,11 +199,14 @@ export class AppComponent {
     const www2:any=col2?.getAttribute("style");
     const n2 = www2.includes("background-color: red");
 
+    //check left side vertical rows
+    let verticalOk = false;
+    verticalOk=parseInt(id)!=8 && parseInt(id)!=18 && parseInt(id)!=28 && parseInt(id)!=38 && parseInt(id)!=48 && parseInt(id)!=58 && parseInt(id)!=68 && parseInt(id)!=78 && parseInt(id)!=88 && parseInt(id)!=98;
 
 
     //check whether if there is an eat
     let n12=false;
-    if((parseInt(id)>19)  && (parseInt(id)!=28) && (parseInt(id)!=29) ){
+    if((parseInt(id)>19)  && (parseInt(id)!=28) && (parseInt(id)!=29) && verticalOk ){
       const col12=document.getElementById((parseInt(id)-18).toString());
       const www12:any=col12?.getAttribute("style");
       n12 = www12.includes("background-color: #d3d34f");
@@ -217,9 +227,14 @@ export class AppComponent {
     const www2:any=col2?.getAttribute("style");
     const n2 = www2.includes("background-color: blue");
 
+    //check left side vertical rows
+    let verticalOk = false;
+    verticalOk=parseInt(id)!=8 && parseInt(id)!=18 && parseInt(id)!=28 && parseInt(id)!=38 && parseInt(id)!=48 && parseInt(id)!=58 && parseInt(id)!=68 && parseInt(id)!=78 && parseInt(id)!=88 && parseInt(id)!=98;
+
+
     //check whether if there is an eat
     let n12=false;
-    if((parseInt(id))<78 ){
+    if((parseInt(id))<78 && verticalOk ){
       const col12=document.getElementById((parseInt(id)+22).toString());
     const www12:any=col12?.getAttribute("style");
     n12 = www12.includes("background-color: #d3d34f");
@@ -666,10 +681,7 @@ export class AppComponent {
 
 
 
-      //after coming to the 3rd row and if the ids are 20,21,
-      if(id==='20' || id==='21' || id==='22' || id==='23' ||id==='24' ||id==='25' ||id==='26' ||id==='27' ||id==='28' ||id==='29'){
 
-      }
 
 
 
@@ -883,6 +895,9 @@ export class AppComponent {
 
       let v;
       let w;
+
+
+
       if(left && !right){
         this.eating=false;
         this.eatingBlues=true;
@@ -891,6 +906,9 @@ export class AppComponent {
         this.eatingFromMiddle=true;
         v = parseInt(id)+11;
         w = parseInt(id)+18;
+
+
+
       }else if(right && !left){
         this.eating=false;
         this.eatingBlues=true;
