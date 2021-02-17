@@ -394,9 +394,10 @@ export class AppComponent {
       //console.log(xx);
       let r = xx.includes("background-color: red");
       let bl = xx.includes("background-color: blue");
+      let b2 = xx.includes("background-color: black");
       //console.log(m)
       //selected.length=0;
-      return (r || bl);
+      return (r || bl || b2);
 
   }
 
